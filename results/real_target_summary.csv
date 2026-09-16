@@ -1,0 +1,6 @@
+night,target,session,n_frames,n_solved,n_target_detected,convention,x_median,y_median
+2026-08-18,Qatar-1,session_01,69,69,0,flip-y,,
+2026-08-21,Qatar-1,session_01,74,74,0,flip-y,,
+2026-08-26,TRES-5,session_01,74,65,0,flip-y,,
+2026-08-27,TRES-3,session_01,61,12,1,flip-y,308.8,200.9
+2026-08-29,TRES-5,session_01,73,73,0,flip-y,,
