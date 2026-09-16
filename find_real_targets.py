@@ -35,8 +35,10 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-DB = os.path.join(BASE, "database")
-OUTDIR = os.path.join(BASE, "results")
+# Input data dir and output dir are overridable via env vars so the same
+# pipeline can be run on the cleaned data (default) or the original raw data.
+DB = os.path.join(BASE, os.environ.get("ONESTAR_DB", "database"))
+OUTDIR = os.path.join(BASE, os.environ.get("ONESTAR_OUT", "results"))
 MATCH_TOL = 5.0        # px: catalog-to-detected match tolerance
 TARGET_TOL = 6.0       # px: target must have a detected star this close
 MIN_INLIERS = 5        # stars that must match for a field to count as solved

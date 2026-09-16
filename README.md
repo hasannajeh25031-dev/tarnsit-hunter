@@ -26,15 +26,28 @@ measurement of each star's brightness over time.
    light curve** (`check_transits.py`, from published ephemerides) drawn on
    each night whether or not it produced data.
 
-## Datasets included
+## Datasets & the two analyses
 
-| Folder                | Frames | Description                                   |
-|-----------------------|--------|-----------------------------------------------|
-| `database/`           | 361    | **Cleaned** data (quality-filtered) — pipeline input |
-| `database_original/`  | 1741   | Original raw data, 8 stars over 22 nights (reference / reproducibility) |
+| Folder             | Frames | What it holds                                          |
+|--------------------|--------|--------------------------------------------------------|
+| `database/`        | 361    | **Cleaned** data (quality-filtered) — default input    |
+| `results/`         | —      | Charts & tables from the cleaned run (3 stars, 5 nights)|
+| `row_result/data/` | 1741   | **Raw** data before cleaning, 8 stars over 22 nights    |
+| `row_result/`      | —      | Charts & tables from the raw run (self-contained)       |
 
-The primary analysis runs on `database/`. To rerun on the raw set instead,
-point the scripts' `DB` at `database_original/`.
+`row_result/` is a self-contained bundle: the raw input data (`data/`) plus
+every graph and table produced from it. `results/` is the equivalent for the
+cleaned data.
+
+To reproduce the raw-data run, point the pipeline at the raw folder and a
+separate output dir:
+
+```bash
+ONESTAR_DB=row_result/data ONESTAR_OUT=row_result python3 find_real_targets.py
+# ...then get_star_positions.py, photometry.py, combine_star.py with the same env
+```
+
+(`ONESTAR_DB` / `ONESTAR_OUT` default to `database` / `results`.)
 
 ## Run order
 
